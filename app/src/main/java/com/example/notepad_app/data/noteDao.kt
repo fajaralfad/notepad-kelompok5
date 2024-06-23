@@ -4,17 +4,17 @@ import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NoteDao {
+interface noteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertNote(note: Note)
+    suspend fun upsertNote(note: note)
 
     @Delete
-    suspend fun deleteNote(note: Note)
+    suspend fun deleteNote(note: note)
 
     @Query("SELECT * FROM Note ORDER BY title ASC")
-    fun getOrderByTitle(): Flow<List<Note>>
+    fun getOrderByTitle(): Flow<List<note>>
 
     @Query("SELECT * FROM Note ORDER BY dateAdded")
-    fun getOrderByDateAddedBy(): Flow<List<Note>>
+    fun getOrderByDateAddedBy(): Flow<List<note>>
 }
