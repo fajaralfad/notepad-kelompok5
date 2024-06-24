@@ -17,4 +17,8 @@ interface noteDao {
 
     @Query("SELECT * FROM Note ORDER BY dateAdded")
     fun getOrderByDateAddedBy(): Flow<List<note>>
+
+    @Query("SELECT * FROM Note WHERE title LIKE '%' || :query || '%' OR disp LIKE '%' || :query || '%' ORDER BY title ASC")
+    fun searchNotes(query: String): Flow<List<note>>
+
 }
